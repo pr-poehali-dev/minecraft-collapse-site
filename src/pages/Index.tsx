@@ -222,8 +222,8 @@ export default function Index() {
 
           <p className="text-collaps-muted text-lg md:text-xl max-w-2xl mx-auto mb-12 leading-relaxed animate-fade-in"
             style={{ animationDelay: "300ms" }}>
-            Мощный чит-клиент для Minecraft с минимальным потреблением ресурсов
-            и стабильной работой на любом железе.
+            С этим софтом вы будете чувствовать себя сильнее, чем обычный игрок.
+            Полный контроль над игрой — в твоих руках.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in"
@@ -268,15 +268,18 @@ export default function Index() {
           <RevealSection>
             <div className="font-mono text-xs text-green tracking-widest uppercase mb-4">О чите</div>
             <h2 className="font-black text-4xl md:text-5xl leading-tight mb-6">
-              Скорость без компромиссов
+              Почувствуй разницу
             </h2>
             <p className="text-collaps-muted text-lg leading-relaxed mb-6">
-              Collaps создан с одной целью — дать тебе преимущество в игре, не убивая производительность.
-              Пока другие клиенты жрут ОЗУ и роняют FPS, Collaps работает как часы.
+              С Collaps вы будете чувствовать себя сильнее, чем обычный игрок.
+              Больше возможностей, больше контроля, больше уверенности в каждом бою.
+            </p>
+            <p className="text-collaps-muted text-lg leading-relaxed mb-6">
+              Пока другие тратят сотни часов на прокачку — ты уже на вершине.
+              Collaps даёт реальное преимущество без потери FPS и стабильности игры.
             </p>
             <p className="text-collaps-muted text-lg leading-relaxed">
-              Написан с нуля, оптимизирован под современное железо и протестирован
-              тысячами игроков по всему миру.
+              Написан с нуля, протестирован тысячами игроков. Работает на любом железе — от старого ноутбука до топового ПК.
             </p>
           </RevealSection>
 
