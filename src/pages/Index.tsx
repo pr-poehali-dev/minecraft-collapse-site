@@ -346,6 +346,18 @@ export default function Index() {
                       </li>
                     ))}
                   </ul>
+                  <div className="border border-collaps-border rounded-lg p-4 mb-6 bg-collaps-surface">
+                    <div className="flex items-center gap-2 mb-3">
+                      <Icon name="Info" size={14} className="text-green shrink-0" />
+                      <span className="font-mono text-xs text-green uppercase tracking-wider">Инструкция по установке</span>
+                    </div>
+                    <ol className="space-y-2 text-sm text-collaps-muted">
+                      <li className="flex gap-2"><span className="text-green font-mono font-bold shrink-0">1.</span> Скачай файл чита ниже</li>
+                      <li className="flex gap-2"><span className="text-green font-mono font-bold shrink-0">2.</span> Установи <span className="text-collaps-text font-medium mx-1">Fabric Loader</span> для Minecraft <span className="text-green font-mono mx-1">1.21.4</span></li>
+                      <li className="flex gap-2"><span className="text-green font-mono font-bold shrink-0">3.</span> Закинь скачанный файл в папку <span className="font-mono text-collaps-text bg-collaps-bg px-1.5 py-0.5 rounded mx-1">.minecraft/mods</span></li>
+                      <li className="flex gap-2"><span className="text-green font-mono font-bold shrink-0">4.</span> Запусти игру через профиль <span className="text-collaps-text font-medium mx-1">Fabric 1.21.4</span></li>
+                    </ol>
+                  </div>
                   <button className={`w-full py-3 rounded font-bold text-sm transition-all duration-200 ${
                     plan.highlight
                       ? "bg-green text-collaps-bg hover:shadow-[0_0_24px_rgba(57,255,132,0.4)] hover:scale-[1.02]"
