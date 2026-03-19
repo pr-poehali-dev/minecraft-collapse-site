@@ -86,6 +86,7 @@ export default function Index() {
   const [uploadState, setUploadState] = useState<"idle" | "uploading" | "done" | "error">("idle");
   const [uploadedFileName, setUploadedFileName] = useState("");
   const [downloadUrl, setDownloadUrl] = useState("");
+  const [showThanksBanner, setShowThanksBanner] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [activeNav, setActiveNav] = useState("home");
 
@@ -418,7 +419,7 @@ export default function Index() {
                     target="_blank"
                     rel="noreferrer"
                     className="inline-flex items-center gap-2 bg-green text-collaps-bg font-bold px-6 py-3 rounded hover:shadow-[0_0_24px_rgba(57,255,132,0.4)] transition-all duration-200"
-                    onClick={(e) => e.stopPropagation()}
+                    onClick={(e) => { e.stopPropagation(); setShowThanksBanner(true); }}
                   >
                     <Icon name="Download" size={18} />
                     Скачать файл
@@ -451,6 +452,50 @@ export default function Index() {
       </section>
 
       {/* FOOTER */}
+      {/* THANKS POPUP */}
+      {showThanksBanner && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center px-4"
+          style={{ background: "rgba(7,8,13,0.85)", backdropFilter: "blur(8px)" }}
+          onClick={() => setShowThanksBanner(false)}
+        >
+          <div
+            className="relative border border-green rounded-2xl p-10 max-w-md w-full text-center glow-green bg-collaps-card animate-fade-in"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              className="absolute top-4 right-4 text-collaps-muted hover:text-green transition-colors"
+              onClick={() => setShowThanksBanner(false)}
+            >
+              <Icon name="X" size={20} />
+            </button>
+            <div className="text-5xl mb-5">🎉</div>
+            <h2 className="font-black text-2xl md:text-3xl leading-snug mb-4">
+              Опа, вот и скачался<br />
+              <span className="text-green glow-text-green">лучший фри софт!</span>
+            </h2>
+            <p className="text-collaps-muted mb-8 leading-relaxed">
+              Оставь отзыв — это помогает другим игрокам узнать о Collaps и мотивирует нас делать его лучше.
+            </p>
+            <a
+              href="#reviews"
+              className="inline-flex items-center gap-2 bg-green text-collaps-bg font-bold px-7 py-3 rounded hover:shadow-[0_0_24px_rgba(57,255,132,0.4)] hover:scale-105 transition-all duration-200"
+              onClick={() => setShowThanksBanner(false)}
+            >
+              <Icon name="Star" size={18} />
+              Оставить отзыв
+            </a>
+            <div className="mt-4">
+              <button
+                className="text-collaps-muted text-sm hover:text-collaps-text transition-colors"
+                onClick={() => setShowThanksBanner(false)}
+              >
+                Закрыть
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       <footer className="border-t border-collaps-border py-10 px-6 relative z-10">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="font-black text-lg tracking-widest text-green font-mono">COLLAPS</div>
