@@ -1,12 +1,23 @@
 import { useEffect, useRef, useState } from "react";
 import Icon from "@/components/ui/icon";
 
+const REVIEWS_URL = "https://functions.poehali.dev/73e03e61-3546-48e8-93ad-f6e39067ea84";
+
+interface Review {
+  id: number;
+  nickname: string;
+  rating: number;
+  text: string;
+  created_at: string;
+}
+
 const NAV_ITEMS = [
   { label: "Главная", href: "#home" },
   { label: "О чите", href: "#about" },
   { label: "Функции", href: "#features" },
   { label: "Цены", href: "#pricing" },
   { label: "Скачать", href: "#download" },
+  { label: "Отзывы", href: "#reviews" },
 ];
 
 const FEATURES = [
@@ -89,6 +100,39 @@ export default function Index() {
   const [showThanksBanner, setShowThanksBanner] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [activeNav, setActiveNav] = useState("home");
+
+  const [reviews, setReviews] = useState<Review[]>([]);
+  const [reviewNick, setReviewNick] = useState("");
+  const [reviewRating, setReviewRating] = useState(5);
+  const [reviewText, setReviewText] = useState("");
+  const [reviewStatus, setReviewStatus] = useState<"idle" | "sending" | "done" | "error">("idle");
+
+  const loadReviews = async () => {
+    const res = await fetch(REVIEWS_URL);
+    const data = await res.json();
+    setReviews(data.reviews || []);
+  };
+
+  useEffect(() => { loadReviews(); }, []);
+
+  const submitReview = async () => {
+    if (!reviewNick.trim() || !reviewText.trim()) return;
+    setReviewStatus("sending");
+    const res = await fetch(REVIEWS_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ nickname: reviewNick, rating: reviewRating, text: reviewText }),
+    });
+    if (res.ok) {
+      setReviewStatus("done");
+      setReviewNick("");
+      setReviewText("");
+      setReviewRating(5);
+      loadReviews();
+    } else {
+      setReviewStatus("error");
+    }
+  };
 
   useEffect(() => {
     const onScroll = () => {
@@ -448,6 +492,111 @@ export default function Index() {
               onChange={handleFileUpload}
             />
           </RevealSection>
+        </div>
+      </section>
+
+      {/* REVIEWS */}
+      <section id="reviews" className="py-32 px-6 relative z-10">
+        <div className="max-w-4xl mx-auto">
+          <RevealSection className="text-center mb-16">
+            <div className="font-mono text-xs text-green tracking-widest uppercase mb-4">Отзывы</div>
+            <h2 className="font-black text-4xl md:text-5xl">Что говорят игроки</h2>
+          </RevealSection>
+
+          {/* Форма */}
+          <RevealSection className="mb-12">
+            <div className="border border-collaps-border rounded-xl p-8 bg-collaps-card">
+              <h3 className="font-bold text-lg mb-6 flex items-center gap-2">
+                <Icon name="MessageSquarePlus" size={20} className="text-green" />
+                Оставить отзыв
+              </h3>
+              <div className="grid md:grid-cols-2 gap-4 mb-4">
+                <input
+                  type="text"
+                  placeholder="Твой ник"
+                  maxLength={50}
+                  value={reviewNick}
+                  onChange={(e) => setReviewNick(e.target.value)}
+                  className="bg-collaps-bg border border-collaps-border rounded-lg px-4 py-3 text-sm text-collaps-text placeholder:text-collaps-muted focus:outline-none focus:border-white transition-colors"
+                />
+                <div className="flex items-center gap-3">
+                  <span className="text-collaps-muted text-sm shrink-0">Оценка:</span>
+                  <div className="flex gap-1">
+                    {[1, 2, 3, 4, 5].map((s) => (
+                      <button key={s} onClick={() => setReviewRating(s)}>
+                        <Icon
+                          name="Star"
+                          size={24}
+                          className={`transition-colors ${s <= reviewRating ? "text-green" : "text-collaps-border"}`}
+                        />
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              <textarea
+                placeholder="Напиши свой отзыв..."
+                maxLength={1000}
+                value={reviewText}
+                onChange={(e) => setReviewText(e.target.value)}
+                rows={4}
+                className="w-full bg-collaps-bg border border-collaps-border rounded-lg px-4 py-3 text-sm text-collaps-text placeholder:text-collaps-muted focus:outline-none focus:border-white transition-colors resize-none mb-4"
+              />
+              <div className="flex items-center gap-4">
+                <button
+                  onClick={submitReview}
+                  disabled={reviewStatus === "sending" || !reviewNick.trim() || !reviewText.trim()}
+                  className="flex items-center gap-2 bg-white text-black font-bold px-6 py-3 rounded text-sm transition-all duration-200 hover:shadow-[0_0_20px_rgba(255,255,255,0.2)] hover:scale-[1.02] disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100"
+                >
+                  {reviewStatus === "sending"
+                    ? <><Icon name="Loader" size={16} className="animate-spin" />Отправка...</>
+                    : <><Icon name="Send" size={16} />Отправить отзыв</>}
+                </button>
+                {reviewStatus === "done" && (
+                  <span className="text-sm text-green flex items-center gap-1">
+                    <Icon name="CheckCircle" size={16} /> Спасибо за отзыв!
+                  </span>
+                )}
+                {reviewStatus === "error" && (
+                  <span className="text-sm text-red-400">Ошибка, попробуй ещё раз</span>
+                )}
+              </div>
+            </div>
+          </RevealSection>
+
+          {/* Список отзывов */}
+          {reviews.length === 0 ? (
+            <RevealSection>
+              <div className="text-center text-collaps-muted py-12 border border-collaps-border rounded-xl">
+                <Icon name="MessageSquare" size={40} className="mx-auto mb-3 opacity-30" />
+                <p>Отзывов пока нет — будь первым!</p>
+              </div>
+            </RevealSection>
+          ) : (
+            <div className="grid md:grid-cols-2 gap-4">
+              {reviews.map((r, i) => (
+                <RevealSection key={r.id} delay={i * 60}>
+                  <div className="border border-collaps-border rounded-xl p-6 bg-collaps-card card-hover h-full">
+                    <div className="flex items-center justify-between mb-3">
+                      <div className="flex items-center gap-2">
+                        <div className="w-8 h-8 rounded-full bg-collaps-border flex items-center justify-center font-bold text-xs text-green">
+                          {r.nickname[0].toUpperCase()}
+                        </div>
+                        <span className="font-bold text-sm">{r.nickname}</span>
+                      </div>
+                      <div className="flex gap-0.5">
+                        {[1, 2, 3, 4, 5].map((s) => (
+                          <Icon key={s} name="Star" size={14}
+                            className={s <= r.rating ? "text-green" : "text-collaps-border"} />
+                        ))}
+                      </div>
+                    </div>
+                    <p className="text-collaps-muted text-sm leading-relaxed">{r.text}</p>
+                  </div>
+                </RevealSection>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
