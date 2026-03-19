@@ -56,38 +56,38 @@
 
   body {
     @apply bg-collaps-bg text-collaps-text font-montserrat;
-    background-color: #07080d;
+    background-color: #0a0a0a;
     overflow-x: hidden;
   }
 }
 
 @layer utilities {
   .text-green {
-    color: #39ff84;
+    color: #ffffff;
   }
 
   .bg-green {
-    background-color: #39ff84;
+    background-color: #ffffff;
   }
 
   .border-green {
-    border-color: #39ff84;
+    border-color: #ffffff;
   }
 
   .glow-green {
     box-shadow:
-      0 0 30px rgba(57, 255, 132, 0.25),
-      0 0 60px rgba(57, 255, 132, 0.1);
+      0 0 30px rgba(255, 255, 255, 0.12),
+      0 0 60px rgba(255, 255, 255, 0.05);
   }
 
   .glow-text-green {
-    text-shadow: 0 0 20px rgba(57, 255, 132, 0.6);
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
   }
 
   .grid-bg {
     background-image:
-      linear-gradient(rgba(57, 255, 132, 0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(57, 255, 132, 0.03) 1px, transparent 1px);
+      linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
     background-size: 48px 48px;
   }
 
@@ -122,8 +122,8 @@
   }
 
   .card-hover:hover {
-    border-color: rgba(57, 255, 132, 0.4);
-    box-shadow: 0 0 24px rgba(57, 255, 132, 0.1);
+    border-color: rgba(255, 255, 255, 0.35);
+    box-shadow: 0 0 24px rgba(255, 255, 255, 0.06);
     transform: translateY(-2px);
   }
 }

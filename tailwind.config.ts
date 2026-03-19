@@ -68,15 +68,15 @@ export default {
 					ring: 'hsl(var(--sidebar-ring))'
 				},
 				collaps: {
-					bg: '#07080d',
-					surface: '#0e1018',
-					card: '#131620',
-					border: '#1e2332',
-					green: '#39ff84',
-					'green-dim': '#1aff6a',
-					'green-glow': 'rgba(57,255,132,0.15)',
-					text: '#e8eaf0',
-					muted: '#6b7280',
+					bg: '#0a0a0a',
+					surface: '#111111',
+					card: '#161616',
+					border: '#2a2a2a',
+					green: '#ffffff',
+					'green-dim': '#e0e0e0',
+					'green-glow': 'rgba(255,255,255,0.08)',
+					text: '#f0f0f0',
+					muted: '#666666',
 				}
 			},
 			borderRadius: {

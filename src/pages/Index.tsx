@@ -141,7 +141,7 @@ export default function Index() {
 
       {/* Glow orb */}
       <div className="fixed top-[-200px] left-1/2 -translate-x-1/2 w-[700px] h-[700px] rounded-full pointer-events-none z-0"
-        style={{ background: "radial-gradient(circle, rgba(57,255,132,0.07) 0%, transparent 70%)" }} />
+        style={{ background: "radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%)" }} />
 
       {/* NAVBAR */}
       <nav className="fixed top-0 left-0 right-0 z-50 border-b border-collaps-border"
