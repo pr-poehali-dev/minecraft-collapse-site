@@ -44,28 +44,12 @@ const FEATURES = [
 
 const PLANS = [
   {
-    name: "Free",
-    price: "0 ₽",
+    name: "Collaps Client",
+    price: "Бесплатно",
     period: "навсегда",
-    features: ["Базовые модули", "Ограниченный функционал", "Обновления раз в месяц"],
+    features: ["Все модули", "Полный функционал", "Регулярные обновления", "Поддержка 1.8 — 1.21", "Низкое потребление ресурсов"],
     cta: "Скачать бесплатно",
-    highlight: false,
-  },
-  {
-    name: "Premium",
-    price: "299 ₽",
-    period: "в месяц",
-    features: ["Все модули", "Приоритетная поддержка", "Обновления каждую неделю", "Закрытый Discord"],
-    cta: "Купить Premium",
     highlight: true,
-  },
-  {
-    name: "Lifetime",
-    price: "1 490 ₽",
-    period: "навсегда",
-    features: ["Всё из Premium", "Пожизненная лицензия", "Ранний доступ к фичам", "Бейдж в Discord"],
-    cta: "Купить Lifetime",
-    highlight: false,
   },
 ];
 
@@ -333,24 +317,22 @@ export default function Index() {
         <div className="max-w-5xl mx-auto">
           <RevealSection className="text-center mb-16">
             <div className="font-mono text-xs text-green tracking-widest uppercase mb-4">Цены</div>
-            <h2 className="font-black text-4xl md:text-5xl">Выбери свой план</h2>
+            <h2 className="font-black text-4xl md:text-5xl">Полностью бесплатно</h2>
           </RevealSection>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="flex justify-center">
             {PLANS.map((plan, i) => (
-              <RevealSection key={plan.name} delay={i * 100}>
-                <div className={`relative border rounded-xl p-8 h-full flex flex-col transition-all duration-300 ${
+              <RevealSection key={plan.name} delay={i * 100} className="w-full max-w-md">
+                <div className={`relative border rounded-xl p-10 h-full flex flex-col transition-all duration-300 ${
                   plan.highlight
                     ? "border-green glow-green bg-collaps-card"
                     : "border-collaps-border bg-collaps-card card-hover"
                 }`}>
-                  {plan.highlight && (
-                    <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                      <span className="bg-green text-collaps-bg text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
-                        Популярный
-                      </span>
-                    </div>
-                  )}
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+                    <span className="bg-green text-collaps-bg text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                      100% бесплатно
+                    </span>
+                  </div>
                   <div className="mb-6">
                     <div className="font-mono text-xs text-collaps-muted uppercase tracking-widest mb-2">{plan.name}</div>
                     <div className="font-black text-4xl text-green">{plan.price}</div>
