@@ -352,9 +352,9 @@ export default function Index() {
                       <span className="font-mono text-xs text-green uppercase tracking-wider">Инструкция по установке</span>
                     </div>
                     <ol className="space-y-2 text-sm text-collaps-muted">
-                      <li className="flex gap-2"><span className="text-green font-mono font-bold shrink-0">1.</span> Скачай файл чита ниже</li>
-                      <li className="flex gap-2"><span className="text-green font-mono font-bold shrink-0">2.</span> Установи <span className="text-collaps-text font-medium mx-1">Fabric Loader</span> для Minecraft <span className="text-green font-mono mx-1">1.21.4</span></li>
-                      <li className="flex gap-2"><span className="text-green font-mono font-bold shrink-0">3.</span> Закинь скачанный файл в папку <span className="font-mono text-collaps-text bg-collaps-bg px-1.5 py-0.5 rounded mx-1">.minecraft/mods</span></li>
+                      <li className="flex gap-2"><span className="text-green font-mono font-bold shrink-0">1.</span> Скачай и установи <span className="text-collaps-text font-medium mx-1">Legacy Launcher</span></li>
+                      <li className="flex gap-2"><span className="text-green font-mono font-bold shrink-0">2.</span> В лаунчере выбери и скачай версию <span className="font-mono text-green mx-1">1.21.4 Fabric</span></li>
+                      <li className="flex gap-2"><span className="text-green font-mono font-bold shrink-0">3.</span> Скачай файл чита ниже и закинь в папку <span className="font-mono text-collaps-text bg-collaps-bg px-1.5 py-0.5 rounded mx-1">.minecraft/mods</span></li>
                       <li className="flex gap-2"><span className="text-green font-mono font-bold shrink-0">4.</span> Запусти игру через профиль <span className="text-collaps-text font-medium mx-1">Fabric 1.21.4</span></li>
                     </ol>
                   </div>
